@@ -1,0 +1,38 @@
+{
+  "name": "brainorth_medical",
+  "version": "1.0.0",
+  "description": "You are an expert Principal Full-Stack SaaS Architect and Senior Software Engineer. You are tasked with architecting and building \"Brainorth Med\" (`med.brainorth.com`), a modern, production-grade, multi-tenant Doctor & Clinic Management CRM within the Brainorth ecosystem.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.66.0",
+    "next": "^14.2.15",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^3.7.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "autoprefixer": "^10.6.2",
+    "postcss": "^8.5.32",
+    "prisma": "^5.22.0",
+    "tailwindcss": "^3.4.14",
+    "typescript": "^6.0.3"
+  }
+}
