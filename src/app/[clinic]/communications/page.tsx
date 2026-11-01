@@ -1,5 +1,7 @@
 import { MessageSquare, Send, CheckCheck, Clock, AlertTriangle, ShieldCheck } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export default function CommunicationsPage({
   params,
 }: {

@@ -1,5 +1,7 @@
 import { Users, Calendar, CreditCard, MessageSquare, ArrowUpRight } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export default function ClinicDashboardPage({
   params,
 }: {

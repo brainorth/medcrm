@@ -1,5 +1,7 @@
 import { Plus, CreditCard, Send, CheckCircle2, Clock } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export default function BillingPage({
   params,
 }: {

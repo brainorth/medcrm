@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Download, CreditCard, Calendar, FileText, CheckCircle2, ShieldCheck, Stethoscope } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export default function PatientPortalPage({
   params,
 }: {
