@@ -13,6 +13,8 @@ const PUBLIC_OR_SYSTEM_PATHS = new Set([
   "robots.txt",
 ]);
 
+const SESSION_COOKIE = "brainorth_session";
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const segments = pathname.split("/").filter(Boolean);
@@ -24,8 +26,24 @@ export function middleware(request: NextRequest) {
 
   const clinicSlug = segments[0];
 
+  // Session cookie presence check (Edge-safe, no crypto here).
+  // Real signature + membership verification happens server-side in
+  // requireClinicAccess() — this is just the fast redirect.
+  const hasSession = Boolean(request.cookies.get(SESSION_COOKIE)?.value);
+
+  // A per-clinic login page (/:clinic/login) must stay reachable for
+  // logged-out users — the (auth) route group handles it.
+  const isClinicLoginPage = segments[1] === "login";
+
+  let requestHeaders = new Headers(request.headers);
+
+  if (!hasSession && !isClinicLoginPage) {
+    const loginUrl = new URL("/login", request.url);
+    loginUrl.searchParams.set("next", pathname);
+    return NextResponse.redirect(loginUrl);
+  }
+
   // Set clinic slug header so Server Components & Route Handlers can read it without parsing params
-  const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-tenant-slug", clinicSlug);
 
   return NextResponse.next({
