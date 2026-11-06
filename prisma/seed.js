@@ -93,6 +93,37 @@ async function main() {
     },
   });
 
+  const apexClinic = await db.organization.upsert({
+    where: { slug: "apex-clinic" },
+    update: {
+      currency: "INR",
+      timezone: "Asia/Kolkata",
+      gstin: "29APEX1234F1Z9",
+      stateName: "Karnataka",
+      invoicePrefix: "APC",
+    },
+    create: {
+      name: "Apex Multi-Specialty Clinic",
+      slug: "apex-clinic",
+      email: "hello@apexclinic.com",
+      phone: "+918023456789",
+      address: "10, Outer Ring Road, Bengaluru - 560103",
+      currency: "INR",
+      timezone: "Asia/Kolkata",
+      gstin: "29APEX1234F1Z9",
+      stateName: "Karnataka",
+      invoicePrefix: "APC",
+      features: {
+        whatsapp_automations: true,
+        telehealth: true,
+        advanced_analytics: true,
+        custom_intake_forms: true,
+        multi_branch: true,
+        online_payments: false,
+      },
+    },
+  });
+
   // ------------------------------------------------------------------
   // Users + memberships (same password for all seeded users)
   // ------------------------------------------------------------------
@@ -103,6 +134,7 @@ async function main() {
       memberships: [
         { orgId: demoClinic.id, role: "DOCTOR", specialty: "Cardiology", licenseNo: "MD-112233" },
         { orgId: dental.id, role: "DOCTOR", specialty: "Dentistry", licenseNo: "DD-445566" },
+        { orgId: apexClinic.id, role: "DOCTOR", specialty: "Orthopedics", licenseNo: "AP-998877" },
       ],
     },
     {
@@ -110,6 +142,7 @@ async function main() {
       fullName: "Sarah Lee",
       memberships: [
         { orgId: demoClinic.id, role: "RECEPTIONIST", specialty: null, licenseNo: null },
+        { orgId: apexClinic.id, role: "RECEPTIONIST", specialty: null, licenseNo: null },
       ],
     },
   ];
