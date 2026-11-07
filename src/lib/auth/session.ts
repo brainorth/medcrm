@@ -11,8 +11,11 @@ export const SESSION_COOKIE = "brainorth_session";
 const SESSION_TTL_SECONDS = 60 * 60 * 24 * 7; // 7 days
 
 function getSecret(): string {
-  const secret = process.env.AUTH_SECRET;
+  const secret = process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET;
   if (!secret) {
+    if (process.env.NODE_ENV !== "production") {
+      return "dev_secret_brainorth_med_session_key_9876543210";
+    }
     throw new Error(
       "AUTH_SECRET is not set. Add it to .env (any long random string) and restart."
     );
